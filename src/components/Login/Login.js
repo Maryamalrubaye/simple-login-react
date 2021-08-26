@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useReducer } from "react";
-
+import React, { useState, useEffect, useReducer, useContext } from "react";
+import AuthContext from "../../Store/auth-context";
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
@@ -56,7 +56,7 @@ const Login = (props) => {
     value: "",
     isValid: undefined,
   });
-
+  const autCtx = useContext(AuthContext);
   useEffect(() => {
     console.log("EFFECT RUNNING");
 
@@ -102,7 +102,7 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(emailState.value, passState.value);
+    autCtx.onLogin(emailState.value, passState.value);
   };
 
   return (
